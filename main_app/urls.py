@@ -10,4 +10,5 @@ urlpatterns =[
     #by convention, CBV's that work with individual models instances will expect a parameter of PK
     path('finches/<int:pk>/update', views.FinchUpdate.as_view(), name="update"),
     path('finches/<int:pk>/delete', views.FinchDelete.as_view(), name="delete"),
+    path('finches/<int:finch_id>/add_feeding_', views.add_feeding, name="add_feeding"),
 ]

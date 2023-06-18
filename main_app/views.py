@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Finch
+from.forms import FeedingForm
 
 #makeshift model 
 # finches = [
@@ -112,9 +113,19 @@ def all_finches(request):
 
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
+    #instantiate feeding form to be rendered in detail.html
+    feeding_form = FeedingForm()
     return render(request, 'finches/details.html', {
-        'finch' : finch
+        'finch' : finch, 'feeding_form' : feeding_form
     })
+
+def add_feeding(request, finch_id):
+    form = FeedingForm(request.POST)
+    if form.is_valid():
+        new_feeding = form.save(commit=False)
+        new_feeding.finch_id = finch_id
+        new_feeding.save()
+    return redirect('details', finch_id=finch_id)
 
 #class based views below
 class FinchCreate(CreateView):
