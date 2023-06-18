@@ -15,8 +15,9 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Finch collector</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/finches">View all finches</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'finches' %}">View all finches</a></li>
+          <li><a href="{% url 'create' %}">Create finch</a></li>
         </ul>
       </div>
     </nav>

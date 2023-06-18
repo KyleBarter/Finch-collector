@@ -6,8 +6,12 @@
 <div class="card">
     <div class="card-content">
         <span class="card-title">{{ finch.species }}</span>
-        <p>Location: {{ finch.habitat }}</p>
+        <p>Location: {{ finch.location }}</p>
         <p>Description: {{ finch.color }}</p>  
+    </div>
+    <div class="card-action">
+        <a href="{% url 'update' finch.id %}">Edit</a>
+        <a href="{% url 'delete' finch.id %}">Delete</a>
     </div>
 </div>
 

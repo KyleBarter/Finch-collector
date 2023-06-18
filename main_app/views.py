@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Finch
 
 #makeshift model 
@@ -114,3 +115,17 @@ def finches_detail(request, finch_id):
     return render(request, 'finches/details.html', {
         'finch' : finch
     })
+
+#class based views below
+class FinchCreate(CreateView):
+    model = Finch
+    #all, we want the form to render all fields defined on finch model
+    fields = '__all__'
+
+class FinchUpdate(UpdateView):
+    model = Finch
+    fields = ['location', 'color']
+
+class FinchDelete(DeleteView):
+    model = Finch
+    success_url = '/finches'
