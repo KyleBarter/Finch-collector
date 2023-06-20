@@ -10,6 +10,16 @@ MEALS = (
 )
 
 # Create your models here.
+class Toy(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('toys_detail', kwargs={'pk': self.id})
+
 class Finch(models.Model):
     species = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
